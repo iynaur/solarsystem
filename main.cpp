@@ -37,7 +37,7 @@ SolarSystem solarSystem;
 Camera camera;
 
 // These control the simulation of time
-double time;
+double timeSpan;
 double timeSpeed;
 
 // holds the state of the controls for the camera - when true, the key for that control is being pressed
@@ -134,7 +134,7 @@ void init(void)
 	solarSystem.addMoon(3, 7000000, 27.3, 27.3, 1738, moon->getTextureHandle()); // test moon for the earth
 
 	// set up time
-	time = 2.552f;
+    timeSpan = 2.552f;
 	timeSpeed = 0.1f;
 
 	// reset controls
@@ -157,8 +157,8 @@ void drawCube(void);
 void display(void)
 {
 	// update the logic and simulation
-	time += timeSpeed;
-	solarSystem.calculatePositions(time);
+    timeSpan += timeSpeed;
+    solarSystem.calculatePositions(timeSpan);
 
 	if (controls.forward) camera.forward();		if (controls.backward) camera.backward();
 	if (controls.left) camera.left();			if (controls.right) camera.right();
@@ -357,7 +357,7 @@ int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH);
-	glutInitWindowSize(1200, 700);
+    glutInitWindowSize(1000, 700);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow(argv[0]);
 	init();
